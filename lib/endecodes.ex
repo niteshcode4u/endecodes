@@ -35,16 +35,4 @@ defmodule Endecodes do
     end
   end
 
-  def mask_code(code, :decodes) do
-    case Base.decode32(code, padding: false, case: :lower) do
-      {:ok, ciphertext} ->
-        {:ok, iv} = "K3EUWY7CLOP2N7FZN5TFVPR2BE" |> Base.decode32(padding: false)
-        key = "QGUaffj5a853MEu6K0w3aGG7qBes89Uz"
-        init_state = :crypto.stream_init(:aes_ctr, key, iv)
-        {_, decrypted_text} = :crypto.stream_decrypt(init_state, ciphertext)
-        if is_binary(decrypted_text), do: String.split(decrypted_text, "::"), else: []
-      _ -> []
-    end
-  end
-
 end
