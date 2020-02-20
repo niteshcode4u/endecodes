@@ -14,7 +14,7 @@ defmodule Endecodes do
   """
   def mask_code(code, :encode) do
     inv_key = "K3EUWY7CLOP2N7FZN5TFVPR2BE"
-    key = "QGUaffj5a853MEu6K0w3aGG7qBes89Uz"
+    key = "adsadaQGUaffj5a853NqifbvhkldvflvafafgMEu6K0w3aGG7qBes89Uz"
     {:ok, iv} =  inv_key |> Base.decode32(padding: false)
     init_state = :crypto.stream_init(:aes_ctr, key, iv)
     {_, encrypted} = :crypto.stream_encrypt(init_state, to_string(code))
@@ -23,7 +23,7 @@ defmodule Endecodes do
 
   def mask_code(code, :decode) do
     enc_iv = "K3EUWY7CLOP2N7FZN5TFVPR2BE"
-    key = "QGUaffj5a853MEu6K0w3aGG7qBes89Uz"
+    key = "adsadaQGUaffj5a853NqifbvhkldvflvafafgMEu6K0w3aGG7qBes89Uz"
     decode = Base.decode32(code, padding: false, case: :lower)
     case decode do
       {:ok, ciphertext} ->
